@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock fot hour</title>
+  <style>
+    :root {
+      --bg: #111;
+      --color: black;
+      --hand-color: #fff;
+      --hand-width: 10px;
+      --clock-size: 200px;
+      --hour-length: 30px;
+      --minute-length: 50px;
+      --second-length: 70px;
+    }
+    #clock {
+      background: var(--bg);
+      width: var(--clock-size);
+      height: var(--clock-size);
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .hand {
+      position: absolute;
+      transform-origin: bottom center;
+      bottom: 50%;
+      left: 50%;
+      border-radius: 10px;
+      width: var(--hand-width);
+      transform: rotate(60deg);
+      background: var(--hand-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      filter: blur(0.5px);
+      border: 1px solid blue;
+    }
+    .hour {
+      height: var(--hour-length);
+      width: 6px;
+    }
+    .minute {
+      width: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--minute-length);
+    }
+    .second {
+      height: var(--second-length);
+      background-color: red;
+      width: 3px;
+      border: 1px solid white;
+    }
+    #graduations {
+      width: 100%;
+      height: 100%;
+    }
+    #graduations div {
+      position: absolute;
+      top: 50%;
+      left: calc(50% - 5px);
+      background: blue;
+      width: 10px;
+      height: 2px;
+      transform-origin: center center;
+      border-radius: 10px;
+    }
+    .big {
+      height: 3px !important;
+      width: 12px !important;
+      background: var(--hand-color) !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .round {
+      position: absolute;
+      transform-origin: bottom center;
+      width: 10px;
+      border-radius: 50%;
+      height: 10px;
+      background: red;
+      bottom: calc(50% - 6px);
+      left: calc(50% - 6px);
+      z-index: 100;
+      border: 1px solid white;
+      animation: round 2s ease infinite;
+      border: 2px solid blue;
+      
+    }
+  </style>
+</head>
+<body>
+  <div id="clock">
+    <div id="graduations">
+    </div>
+    <div class="round">
+    </div>
+    <div class="hand hour" id="hour"></div>
+    <div class="hand minute" id="minute">
+    </div>
+    <div class="hand second" id="second"></div>
+  </div>
+  <p id="time"></p>
+  <script>
+  const time = document.getElementById("time")
+  const hourHand = document.getElementById("hour")
+  const minuteHand = document.getElementById("minute")
+  const secondHand = document.getElementById("second")
+  const graduations = document.getElementById("graduations")
+  for(let i=0; i<60; i++) {
+    const radius = 90
+    const grad = document.createElement("div")
+    if(i % 5 === 0) {
+      grad.classList.add("big")
+    }
+    grad.style.transform=`rotate(${i * 6}deg) translate(-${radius}px)`
+    graduations.appendChild(grad)
+  }
+  function clock() {
+  const now = new Date()
+  const hours = now.getHours()
+  const minutes = now.getMinutes()
+  const seconds = now.getSeconds()
+  time.innerHTML=`${hours}: ${minutes}: ${seconds}`
+  const hourDeg = (hours % 12) * 30 + minutes * 0.5
+  const minuteDeg = minutes * 6 + seconds * 0.1
+  const secondDeg = seconds * 6
+  hourHand.style.transform= `rotate(${hourDeg}deg)`
+  minuteHand.style.transform= `rotate(${minuteDeg}deg)`
+  secondHand.style.transform= `rotate(${secondDeg}deg)`
+
+  }
+  clock()
+  setInterval(clock,1000)
+  </script>
+</body>
+</html>

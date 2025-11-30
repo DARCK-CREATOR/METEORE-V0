@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap-icons-1.13.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="weather.css">
+  <title>Weather app</title>
+</head>
+<body class="body">
+  <div class="modal fade" id="Lancement" tabindex="-1" ariallabelby="LancementLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content" id="contenu">
+      <div class="modal-header">
+        <h4 class="modal-title text-danger">
+          METEORE AI
+        </h4>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="close">
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <input class="form-control input-send" placeholder="Aide moi à ..." type="search">
+        <button type="button" class="btn btn-primary btn-send">
+          envoyer
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-meteo">
+    <h1>METEORE</h1>
+    <h1 class="weather-icon">🌤️</h1>
+  </div>
+  <div class="content">
+    <div class="search-box">
+      <input type="search" class="input-search" id="search" placeholder="Recherchez une ville...">
+      <button class="btn btn-search btn-info"><i class="bi bi-search"></i></button>
+    </div>
+    
+    <hr>
+    
+    <div class="p-3 text-center">
+      <h2 class="text-primary text-center h2 location">PARIS,FR</h2>
+      
+      <div class="date text-primary my-2">
+        Chargement...
+      </div>
+      
+      <div class="weather-box">
+        <div class="text-center temp hand">--°C</div>
+        <div class="weather hand">--</div>
+        <div class="weather-icons hand">🌤️</div>
+      </div>
+      
+      <div class="detail-box my-2">
+        <div class="detail">
+          <span class="label">HUMIDITÉ</span>
+          <span class="value">--%</span>
+        </div>
+        <div class="detail">
+          <span class="label">VENT</span>
+          <span class="value">-- km/h</span>
+        </div>
+        <div class="detail">
+          <span class="label">PRESSION</span>
+          <span class="value">-- hPa</span>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="ai-btn" data-bs-toggle="modal" data-bs-target="#Lancement">
+    </button>
+    </button>
+    <hr class="text-black">
+    
+    <div class="forecast">
+      <h1 class="text-center my-2 text-primary pb-4 h2">PRÉVISION 5 JOURS</h1>
+      
+      <div class="forecast-list d-grid">
+        <!-- Les prévisions seront ajoutées par JavaScript -->
+      </div>
+    </div>
+  </div>
+  <dialog class="dialo" id="dialo">
+  </dialog>
+
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script src="weather.js"></script>
+</body>
+</html>
